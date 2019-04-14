@@ -1,0 +1,51 @@
+﻿@model C_R_M.Models.Marketing
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Marketing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto1.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Marketing }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

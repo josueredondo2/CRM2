@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("CRM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+        </ul>*@
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Empresa<b class="caret"></b></a>
+                        <ul class="dropdown-menu multi-level">
+                            <li class="dropdown-submenu">
+                                <a href="#">Action</a>
+                                @Html.ActionLink("Empresa", "Index", "Empresas")
+                                @Html.ActionLink("Contacto", "Index", "Contactoes")
+                                @Html.ActionLink("Servicios", "Index", "ServicioEmpresas")
+                                @Html.ActionLink("Estado cuenta", "Index", "EstadodeCuentas")
+                                @Html.ActionLink("Correo Cliente", "Index", "Correos")
+                                @Html.ActionLink("Telefono Cliente", "Index", "Telefonoes")
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimiento<b class="caret"></b></a>
+                        <ul class="dropdown-menu multi-level">
+                            <li class="dropdown-submenu">
+                                <a href="#">Mantenimientos</a>
+                                @Html.ActionLink("Marketing", "Index", "Marketings")
+                                @Html.ActionLink("Productos", "Index", "Productoes")
+                                @Html.ActionLink("Publicidad", "Index", "Publicidads")
+                                @Html.ActionLink("Recordatorios", "Index", "Recordatorios")
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

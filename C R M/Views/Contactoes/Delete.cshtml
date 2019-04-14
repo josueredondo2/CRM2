@@ -1,0 +1,72 @@
+﻿@model C_R_M.Models.Contacto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Contacto</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Apellido1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Apellido2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Puesto)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Puesto)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Empresa1.Nombre)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

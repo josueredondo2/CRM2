@@ -1,0 +1,83 @@
+﻿@model C_R_M.Models.Recordatorio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recordatorio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minutos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minutos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abreviatura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abreviatura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recordar.Descripción)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recordar.Descripción)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Recordatorio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

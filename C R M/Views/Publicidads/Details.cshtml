@@ -1,0 +1,67 @@
+﻿@model C_R_M.Models.Publicidad
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Publicidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Caducidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Caducidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadodeCuenta.Id_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadodeCuenta.Id_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedioPublicitario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedioPublicitario.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Publicidad }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<C_R_M.Models.Publicidad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Caducidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadodeCuenta.Id_Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedioPublicitario.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Caducidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa1.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadodeCuenta.Id_Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedioPublicitario.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Publicidad }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Publicidad }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Publicidad })
+        </td>
+    </tr>
+}
+
+</table>

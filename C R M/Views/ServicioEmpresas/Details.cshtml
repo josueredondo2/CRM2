@@ -1,0 +1,82 @@
+﻿@model C_R_M.Models.ServicioEmpresa
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ServicioEmpresa</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha_Creacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fecha_Creacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Primer_Pago)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Primer_Pago)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Renovacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Renovacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Precio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa1.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Empresa1.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Producto.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Producto.Nombre)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Servicio_Empresa }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
