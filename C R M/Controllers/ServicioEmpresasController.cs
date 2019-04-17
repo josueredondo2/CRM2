@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace C_R_M.Controllers
         private CRMEntities db = new CRMEntities();
 
         // GET: ServicioEmpresas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var servicioEmpresa = db.ServicioEmpresa.Include(s => s.Empresa1).Include(s => s.Producto);
-            return View(await servicioEmpresa.ToListAsync());
+            return View(servicioEmpresa.ToList());
         }
 
         // GET: ServicioEmpresas/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServicioEmpresa servicioEmpresa = await db.ServicioEmpresa.FindAsync(id);
+            ServicioEmpresa servicioEmpresa = db.ServicioEmpresa.Find(id);
             if (servicioEmpresa == null)
             {
                 return HttpNotFound();
@@ -50,12 +49,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Servicio_Empresa,Id_Producto,Descripcion,Fecha_Creacion,Primer_Pago,Renovacion,Empresa,Precio")] ServicioEmpresa servicioEmpresa)
+        public ActionResult Create([Bind(Include = "Id_Servicio_Empresa,Id_Producto,Descripcion,Fecha_Creacion,Primer_Pago,Renovacion,Empresa,Precio")] ServicioEmpresa servicioEmpresa)
         {
             if (ModelState.IsValid)
             {
                 db.ServicioEmpresa.Add(servicioEmpresa);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,13 +64,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: ServicioEmpresas/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServicioEmpresa servicioEmpresa = await db.ServicioEmpresa.FindAsync(id);
+            ServicioEmpresa servicioEmpresa = db.ServicioEmpresa.Find(id);
             if (servicioEmpresa == null)
             {
                 return HttpNotFound();
@@ -86,12 +85,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Servicio_Empresa,Id_Producto,Descripcion,Fecha_Creacion,Primer_Pago,Renovacion,Empresa,Precio")] ServicioEmpresa servicioEmpresa)
+        public ActionResult Edit([Bind(Include = "Id_Servicio_Empresa,Id_Producto,Descripcion,Fecha_Creacion,Primer_Pago,Renovacion,Empresa,Precio")] ServicioEmpresa servicioEmpresa)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(servicioEmpresa).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", servicioEmpresa.Empresa);
@@ -100,13 +99,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: ServicioEmpresas/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServicioEmpresa servicioEmpresa = await db.ServicioEmpresa.FindAsync(id);
+            ServicioEmpresa servicioEmpresa = db.ServicioEmpresa.Find(id);
             if (servicioEmpresa == null)
             {
                 return HttpNotFound();
@@ -117,11 +116,11 @@ namespace C_R_M.Controllers
         // POST: ServicioEmpresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            ServicioEmpresa servicioEmpresa = await db.ServicioEmpresa.FindAsync(id);
+            ServicioEmpresa servicioEmpresa = db.ServicioEmpresa.Find(id);
             db.ServicioEmpresa.Remove(servicioEmpresa);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

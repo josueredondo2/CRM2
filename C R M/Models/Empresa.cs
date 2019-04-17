@@ -11,7 +11,8 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Empresa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,10 +32,14 @@ namespace C_R_M.Models
         public string Correo { get; set; }
         public string Cedula { get; set; }
         public string Pais { get; set; }
+        [DisplayName("Provincia")]
         public Nullable<int> Id_Provincia { get; set; }
+        [DisplayName("Canton")]
         public Nullable<int> Id_Canton { get; set; }
         public Nullable<int> Id_Distrito { get; set; }
+        [DisplayName("Otras señas")]
         public string Otras_Señas { get; set; }
+        [DisplayName("Codigo Postal")]
         public int Codigo_Postal { get; set; }
     
         public virtual Canton Canton { get; set; }

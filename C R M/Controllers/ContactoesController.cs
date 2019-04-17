@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace C_R_M.Controllers
         private CRMEntities db = new CRMEntities();
 
         // GET: Contactoes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var contacto = db.Contacto.Include(c => c.Empresa1);
-            return View(await contacto.ToListAsync());
+            return View(contacto.ToList());
         }
 
         // GET: Contactoes/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contacto contacto = await db.Contacto.FindAsync(id);
+            Contacto contacto = db.Contacto.Find(id);
             if (contacto == null)
             {
                 return HttpNotFound();
@@ -49,13 +48,13 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Contacto,Nombre,Apellido1,Apellido2,Puesto,Empresa")] Contacto contacto)
+        public ActionResult Create([Bind(Include = "Id_Contacto,Nombre,Apellido1,Apellido2,Puesto,Empresa")] Contacto contacto)
         {
             if (ModelState.IsValid)
             {
                 db.Contacto.Add(contacto);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("index","Empresas",new {id = 1});
             }
 
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", contacto.Empresa);
@@ -63,13 +62,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: Contactoes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contacto contacto = await db.Contacto.FindAsync(id);
+            Contacto contacto = db.Contacto.Find(id);
             if (contacto == null)
             {
                 return HttpNotFound();
@@ -83,26 +82,26 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Contacto,Nombre,Apellido1,Apellido2,Puesto,Empresa")] Contacto contacto)
+        public ActionResult Edit([Bind(Include = "Id_Contacto,Nombre,Apellido1,Apellido2,Puesto,Empresa")] Contacto contacto)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(contacto).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("Edit", "Empresas", new { id = 1 });
             }
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", contacto.Empresa);
             return View(contacto);
         }
 
         // GET: Contactoes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contacto contacto = await db.Contacto.FindAsync(id);
+            Contacto contacto = db.Contacto.Find(id);
             if (contacto == null)
             {
                 return HttpNotFound();
@@ -113,11 +112,11 @@ namespace C_R_M.Controllers
         // POST: Contactoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Contacto contacto = await db.Contacto.FindAsync(id);
+            Contacto contacto = db.Contacto.Find(id);
             db.Contacto.Remove(contacto);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

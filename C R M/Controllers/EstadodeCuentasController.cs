@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace C_R_M.Controllers
         private CRMEntities db = new CRMEntities();
 
         // GET: EstadodeCuentas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var estadodeCuenta = db.EstadodeCuenta.Include(e => e.Empresa1);
-            return View(await estadodeCuenta.ToListAsync());
+            return View(estadodeCuenta.ToList());
         }
 
         // GET: EstadodeCuentas/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EstadodeCuenta estadodeCuenta = await db.EstadodeCuenta.FindAsync(id);
+            EstadodeCuenta estadodeCuenta = db.EstadodeCuenta.Find(id);
             if (estadodeCuenta == null)
             {
                 return HttpNotFound();
@@ -49,12 +48,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Estado,Id_Credito_Disponible,Empresa")] EstadodeCuenta estadodeCuenta)
+        public ActionResult Create([Bind(Include = "Id_Estado,Id_Credito_Disponible,Empresa")] EstadodeCuenta estadodeCuenta)
         {
             if (ModelState.IsValid)
             {
                 db.EstadodeCuenta.Add(estadodeCuenta);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -63,13 +62,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: EstadodeCuentas/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EstadodeCuenta estadodeCuenta = await db.EstadodeCuenta.FindAsync(id);
+            EstadodeCuenta estadodeCuenta = db.EstadodeCuenta.Find(id);
             if (estadodeCuenta == null)
             {
                 return HttpNotFound();
@@ -83,12 +82,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Estado,Id_Credito_Disponible,Empresa")] EstadodeCuenta estadodeCuenta)
+        public ActionResult Edit([Bind(Include = "Id_Estado,Id_Credito_Disponible,Empresa")] EstadodeCuenta estadodeCuenta)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(estadodeCuenta).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", estadodeCuenta.Empresa);
@@ -96,13 +95,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: EstadodeCuentas/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EstadodeCuenta estadodeCuenta = await db.EstadodeCuenta.FindAsync(id);
+            EstadodeCuenta estadodeCuenta = db.EstadodeCuenta.Find(id);
             if (estadodeCuenta == null)
             {
                 return HttpNotFound();
@@ -113,11 +112,11 @@ namespace C_R_M.Controllers
         // POST: EstadodeCuentas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            EstadodeCuenta estadodeCuenta = await db.EstadodeCuenta.FindAsync(id);
+            EstadodeCuenta estadodeCuenta = db.EstadodeCuenta.Find(id);
             db.EstadodeCuenta.Remove(estadodeCuenta);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

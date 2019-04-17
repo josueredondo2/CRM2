@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace C_R_M.Controllers
         private CRMEntities db = new CRMEntities();
 
         // GET: Telefonoes
-        public async Task<ActionResult> Index()
+        public ActionResult Index(int? id)
         {
             var telefono = db.Telefono.Include(t => t.Contacto1);
-            return View(await telefono.ToListAsync());
+            return View(telefono.ToList().Where(x => x.Contacto==id));
         }
 
         // GET: Telefonoes/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Telefono telefono = await db.Telefono.FindAsync(id);
+            Telefono telefono = db.Telefono.Find(id);
             if (telefono == null)
             {
                 return HttpNotFound();
@@ -49,13 +48,13 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Telefono,Telefono1,Contacto")] Telefono telefono)
+        public ActionResult Create([Bind(Include = "Id_Telefono,Telefono1,Contacto")] Telefono telefono)
         {
             if (ModelState.IsValid)
             {
                 db.Telefono.Add(telefono);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("Index",new {id=telefono.Contacto});
             }
 
             ViewBag.Contacto = new SelectList(db.Contacto, "Id_Contacto", "Nombre", telefono.Contacto);
@@ -63,13 +62,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: Telefonoes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Telefono telefono = await db.Telefono.FindAsync(id);
+            Telefono telefono = db.Telefono.Find(id);
             if (telefono == null)
             {
                 return HttpNotFound();
@@ -83,26 +82,26 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Telefono,Telefono1,Contacto")] Telefono telefono)
+        public ActionResult Edit([Bind(Include = "Id_Telefono,Telefono1,Contacto")] Telefono telefono)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(telefono).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                 return RedirectToAction("Index",new {id=telefono.Contacto});
             }
             ViewBag.Contacto = new SelectList(db.Contacto, "Id_Contacto", "Nombre", telefono.Contacto);
             return View(telefono);
         }
 
         // GET: Telefonoes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Telefono telefono = await db.Telefono.FindAsync(id);
+            Telefono telefono = db.Telefono.Find(id);
             if (telefono == null)
             {
                 return HttpNotFound();
@@ -113,12 +112,13 @@ namespace C_R_M.Controllers
         // POST: Telefonoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Telefono telefono = await db.Telefono.FindAsync(id);
+            Telefono telefono = db.Telefono.Find(id);
+            var idex = telefono.Contacto.Value;
             db.Telefono.Remove(telefono);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            db.SaveChanges();
+            return RedirectToAction("Index", new { id = idex });
         }
 
         protected override void Dispose(bool disposing)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace C_R_M.Controllers
         private CRMEntities db = new CRMEntities();
 
         // GET: Empresas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var empresa = db.Empresa.Include(e => e.Canton).Include(e => e.Distrito).Include(e => e.Provincia);
-            return View(await empresa.ToListAsync());
+            return View(empresa.ToList());
         }
 
         // GET: Empresas/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
+            Empresa empresa = db.Empresa.Find(id);
             if (empresa == null)
             {
                 return HttpNotFound();
@@ -51,12 +50,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Empresa,Nombre,Correo,Cedula,Pais,Id_Provincia,Id_Canton,Id_Distrito,Otras_Señas,Codigo_Postal")] Empresa empresa)
+        public ActionResult Create([Bind(Include = "Id_Empresa,Nombre,Correo,Cedula,Pais,Id_Provincia,Id_Canton,Id_Distrito,Otras_Señas,Codigo_Postal")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
                 db.Empresa.Add(empresa);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -67,13 +66,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: Empresas/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
+            Empresa empresa = db.Empresa.Find(id);
             if (empresa == null)
             {
                 return HttpNotFound();
@@ -89,12 +88,12 @@ namespace C_R_M.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Empresa,Nombre,Correo,Cedula,Pais,Id_Provincia,Id_Canton,Id_Distrito,Otras_Señas,Codigo_Postal")] Empresa empresa)
+        public ActionResult Edit([Bind(Include = "Id_Empresa,Nombre,Correo,Cedula,Pais,Id_Provincia,Id_Canton,Id_Distrito,Otras_Señas,Codigo_Postal")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(empresa).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Id_Canton = new SelectList(db.Canton, "Id_Canton", "Nombre", empresa.Id_Canton);
@@ -104,13 +103,13 @@ namespace C_R_M.Controllers
         }
 
         // GET: Empresas/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
+            Empresa empresa = db.Empresa.Find(id);
             if (empresa == null)
             {
                 return HttpNotFound();
@@ -121,11 +120,11 @@ namespace C_R_M.Controllers
         // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Empresa empresa = await db.Empresa.FindAsync(id);
+            Empresa empresa = db.Empresa.Find(id);
             db.Empresa.Remove(empresa);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

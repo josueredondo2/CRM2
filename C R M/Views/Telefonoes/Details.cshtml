@@ -1,42 +1,35 @@
 ﻿@model C_R_M.Models.Telefono
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Telefono</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Telefono1)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Telefono1)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Contacto1.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Contacto1.Nombre)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Telefono }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h4>Telefono</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contacto1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto1.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Telefono }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

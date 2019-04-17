@@ -60,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Canton.Nombre)
+            @Html.DisplayName("Canton")
         </dt>
 
         <dd>
@@ -68,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Distrito.Nombre)
+            @Html.DisplayName("Distrito")
         </dt>
 
         <dd>
@@ -76,7 +76,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Provincia.Nombre)
+            @Html.DisplayName("Provincia")
         </dt>
 
         <dd>
@@ -86,6 +86,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Empresa }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Empresa }) |
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>

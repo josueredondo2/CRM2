@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -54,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.MedioPublicitario.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Publicidad }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Publicidad }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Publicidad })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Publicidad }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id_Publicidad }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id_Publicidad })
         </td>
     </tr>
 }

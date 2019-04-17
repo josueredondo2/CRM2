@@ -1,32 +1,29 @@
 ﻿@model IEnumerable<C_R_M.Models.Telefono>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int contacto = Model.FirstOrDefault().Contacto1.Id_Contacto;
 }
 
-<!DOCTYPE html>
+<h2>Telefonos</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contacto1.Nombre)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contacto1.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefono1)
@@ -35,13 +32,12 @@
                 @Html.DisplayFor(modelItem => item.Contacto1.Nombre)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id_Telefono }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id_Telefono }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id_Telefono })
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id_Telefono }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id_Telefono }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id_Telefono })
             </td>
         </tr>
     }
-    
-    </table>
-</body>
-</html>
+
+</table>
+@Html.ActionLink("Volver a la lista", "../Contactoes/Index",new { id = @contacto } )

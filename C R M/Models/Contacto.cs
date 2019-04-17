@@ -11,7 +11,8 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Contacto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,9 @@ namespace C_R_M.Models
     
         public int Id_Contacto { get; set; }
         public string Nombre { get; set; }
+        [DisplayName("Primer Apellido")]
         public string Apellido1 { get; set; }
+        [DisplayName("Segundo Apellido")]
         public string Apellido2 { get; set; }
         public string Puesto { get; set; }
         public Nullable<int> Empresa { get; set; }
