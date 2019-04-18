@@ -1,0 +1,59 @@
+﻿@model C_R_M.Models.Cuenta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Cuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto_Abono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto_Abono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto_Pendiente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto_Pendiente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicioEmpresa.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicioEmpresa.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Cuenta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

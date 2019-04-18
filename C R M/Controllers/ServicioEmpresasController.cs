@@ -55,7 +55,7 @@ namespace C_R_M.Controllers
             {
                 db.ServicioEmpresa.Add(servicioEmpresa);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("index", "Empresas", new { id = 1 });
             }
 
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", servicioEmpresa.Empresa);
@@ -91,7 +91,7 @@ namespace C_R_M.Controllers
             {
                 db.Entry(servicioEmpresa).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("index", "Empresas", new { id = 1 });
             }
             ViewBag.Empresa = new SelectList(db.Empresa, "Id_Empresa", "Nombre", servicioEmpresa.Empresa);
             ViewBag.Id_Producto = new SelectList(db.Producto, "Id_Producto", "Nombre", servicioEmpresa.Id_Producto);
@@ -121,7 +121,7 @@ namespace C_R_M.Controllers
             ServicioEmpresa servicioEmpresa = db.ServicioEmpresa.Find(id);
             db.ServicioEmpresa.Remove(servicioEmpresa);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("index", "Empresas", new { id = 1 });
         }
 
         protected override void Dispose(bool disposing)

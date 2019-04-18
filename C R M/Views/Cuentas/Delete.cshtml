@@ -1,0 +1,65 @@
+﻿@model C_R_M.Models.Cuenta
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto_Abono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto_Abono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto_Pendiente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto_Pendiente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicioEmpresa.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicioEmpresa.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

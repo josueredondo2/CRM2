@@ -1,9 +1,9 @@
 ﻿@model C_R_M.Models.Producto
 
 @{
-    Layout = null;
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -20,32 +20,33 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Nombre)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Nombre)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Codigo)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Codigo)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Tipo_Producto)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Tipo_Producto)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Volver a la lista", "Index")

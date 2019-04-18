@@ -11,7 +11,8 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class ServicioEmpresa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,13 @@ namespace C_R_M.Models
         {
             this.Cuenta = new HashSet<Cuenta>();
         }
-    
+
         public int Id_Servicio_Empresa { get; set; }
         public int Id_Producto { get; set; }
         public string Descripcion { get; set; }
+        [DisplayName("Fecha de Creacion")]
         public System.DateTime Fecha_Creacion { get; set; }
+        [DisplayName("Primer Pago")]
         public Nullable<System.DateTime> Primer_Pago { get; set; }
         public System.DateTime Renovacion { get; set; }
         public int Empresa { get; set; }

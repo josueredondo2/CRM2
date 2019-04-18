@@ -11,13 +11,17 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Cuenta
     {
         public int Id_Cuenta { get; set; }
         public int Servicio_Empresa { get; set; }
+        [DisplayName("Fecha de pago")]
         public System.DateTime Fecha_Pago { get; set; }
+        [DisplayName("Monto de Abono")]
         public double Monto_Abono { get; set; }
+        [DisplayName("Monto Pendiente")]
         public Nullable<double> Monto_Pendiente { get; set; }
         public string Descripcion { get; set; }
     
