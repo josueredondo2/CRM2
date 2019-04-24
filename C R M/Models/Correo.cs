@@ -11,12 +11,10 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Correo
     {
         public int Id_Correo { get; set; }
-        [DisplayName("Correo")]
         public string Correo1 { get; set; }
         public Nullable<int> Contacto { get; set; }
     

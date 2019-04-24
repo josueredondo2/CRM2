@@ -10,6 +10,7 @@ namespace C_R_M.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 

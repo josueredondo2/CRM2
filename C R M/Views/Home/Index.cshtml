@@ -2,3 +2,71 @@
     ViewBag.Title = "HOME";
 }
 
+
+
+<div id="LoginPrincipal">
+    <h2>Login</h2>
+    <br />
+    <br />
+    <br />
+    <div class="form-group">
+        <label for="exampleDropdownFormEmail1">Correo</label>
+        <input type="text" class="form-control" id="email" placeholder="email@example.com">
+    </div>
+    <div class="form-group">
+        <label for="exampleDropdownFormPassword1">Contraseña</label>
+        <input type="password" class="form-control" id="pass" placeholder="Password">
+    </div>
+    <button id="Login" class="btn btn-primary">Ingresar</button>
+</div>
+<div id="bienvenido" class="hide">
+    <h2>Pagina Principal</h2>
+    <h3>Bienvenido al sistema CRM para gestión de su negocio </h3>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            
+            validarsesion();
+            $("#Login").on("click", function () {
+                var Correo = $('#email').val()
+                var Pass = $('#pass').val() 
+                $.ajax({
+                    url: "/Usuarios/Logeo/",
+                    method: "GET",
+                    data: { email: Correo , contraseña: Pass },
+                    success: function (data) {
+                        if (data == 'False') {
+                            alert('Datos incorrectos');
+                        } else {
+                            alert('Bienvenido');
+                            $('#Menu').removeClass('hide')
+                            $('#LoginPrincipal').addClass('hide') 
+                            $('#bienvenido').removeClass('hide') 
+                            sessionStorage.setItem('inicio', 'yes');
+                        }
+                    }, failed: function (data) {
+                    }
+                });
+            });
+            function validarsesion(){
+                var data = sessionStorage.getItem('inicio');
+                console.log(data)
+                if (data == 'yes') {
+                    $('#Menu').removeClass('hide')
+                    $('#LoginPrincipal').addClass('hide')
+                    $('#bienvenido').removeClass('hide') 
+                } else {
+                    $('#Menu').addClass('hide')
+                }
+                
+            };
+        });
+
+  
+
+    </script>
+}

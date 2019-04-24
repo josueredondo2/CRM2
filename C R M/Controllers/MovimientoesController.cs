@@ -51,6 +51,7 @@ namespace C_R_M.Controllers
         {
             if (ModelState.IsValid)
             {
+                movimiento.Fecha = DateTime.Now;
                 db.Movimiento.Add(movimiento);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

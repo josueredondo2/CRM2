@@ -140,11 +140,13 @@
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\EstadodeCuentasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MarketingsController.cs" />
     <Compile Include="Controllers\MovimientoesController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Controllers\PublicidadsController.cs" />
     <Compile Include="Controllers\RecordatoriosController.cs" />
+    <Compile Include="Controllers\RecordatorioshoyController.cs" />
     <Compile Include="Controllers\ServicioEmpresasController.cs" />
     <Compile Include="Controllers\TelefonoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -426,9 +428,16 @@
     <Content Include="Views\Cuentas\Details.cshtml" />
     <Content Include="Views\Cuentas\Edit.cshtml" />
     <Content Include="Views\Cuentas\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Recordatorioshoy\Create.cshtml" />
+    <Content Include="Views\Recordatorioshoy\Delete.cshtml" />
+    <Content Include="Views\Recordatorioshoy\Details.cshtml" />
+    <Content Include="Views\Recordatorioshoy\Edit.cshtml" />
+    <Content Include="Views\Recordatorioshoy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reporte\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

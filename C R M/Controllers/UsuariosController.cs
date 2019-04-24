@@ -54,6 +54,7 @@ namespace C_R_M.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Fecha_Creacion = DateTime.Now;
                 db.Usuario.Add(usuario);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -90,6 +91,7 @@ namespace C_R_M.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.Usuario.Add(usuario);
                 db.Entry(usuario).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -132,6 +134,17 @@ namespace C_R_M.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public bool Logeo(string email,string contraseña)
+        {
+             var usuario = db.Usuario.Include(u => u.Empresa1).Include(u => u.Rol1);
+            var resultado = usuario.Where(x => x.Correo == email && x.Contraseña == contraseña).FirstOrDefault();
+            if (resultado != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

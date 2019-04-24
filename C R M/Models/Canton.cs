@@ -11,8 +11,7 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Canton
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +20,7 @@ namespace C_R_M.Models
             this.Distrito = new HashSet<Distrito>();
             this.Empresa = new HashSet<Empresa>();
         }
-        [DisplayName("Canton")]
+    
         public int Id_Canton { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Provincia { get; set; }

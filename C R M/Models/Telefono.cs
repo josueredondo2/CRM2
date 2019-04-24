@@ -11,12 +11,10 @@ namespace C_R_M.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Telefono
     {
         public int Id_Telefono { get; set; }
-        [DisplayName("Telefono")]
         public Nullable<int> Telefono1 { get; set; }
         public Nullable<int> Contacto { get; set; }
     
